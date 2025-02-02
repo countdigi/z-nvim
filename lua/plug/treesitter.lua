@@ -20,6 +20,9 @@ return {
     },
     highlight = { enable = true },
     indent = { enable = true },
-    autoinstall = false,
-  }
+  },
+
+  config = function(_, opts)
+    require('nvim-treesitter.configs').setup(opts)
+  end,
 }

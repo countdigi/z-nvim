@@ -31,12 +31,16 @@ require('lazy').setup({
   require 'plug.telescope',
   require 'plug.theme-nord',
   require 'plug.treesitter',
+  require 'plug.bufferline',
+  require 'plug.hop'
 })
 
 ------------------------------------------------------------------------------------------------------
 
+vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.shiftwidth = 2
 
 ------------------------------------------------------------------------------------------------------
 
@@ -52,6 +56,11 @@ vim.keymap.set("n", "<C-j>", "20jz.")
 vim.keymap.set("n", "<C-k>", "20kz.")
 vim.keymap.set("n", "q", "<nop>")
 
+
+-- vim.keymap.set('n', 'grn', vim.lsp.buf.rename)
+-- vim.keymap.set('n', 'gra', vim.lsp.buf.code_action)
+-- vim.keymap.set('n', 'grr', vim.lsp.buf.references)
+
 ------------------------------------------------------------------------------------------------------
 
 -- require(themes[env_var_nvim_theme]),
@@ -61,7 +70,6 @@ vim.keymap.set("n", "q", "<nop>")
 -- require 'plugins.autocompletion',
 -- require 'plugins.none-ls',
 -- require 'plugins.lualine',
--- require 'plugins.bufferline',
 -- require 'plugins.neo-tree',
 -- require 'plugins.alpha',
 -- require 'plugins.indent-blankline',

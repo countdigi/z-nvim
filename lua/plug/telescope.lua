@@ -16,11 +16,12 @@ return {
 
   keys = {
     { '<leader>fb', function() require('telescope.builtin').buffers() end },
+    { '<leader>fh', function() require('telescope.builtin').help_tags() end },
     { '<leader>ff', function() require('telescope.builtin').find_files() end },
-    { '<leader>fh', function() require('telescope.builtin').find_files({hidden = true}) end },
     { '<leader>fg', function() require('telescope.builtin').live_grep() end },
     { '<leader>fm', function() require('telescope').extensions.frecency.frecency {} end },
     { '<leader>fs', function() require('telescope.builtin').current_buffer_fuzzy_find() end },
+    { '<leader>fr', function() require('telescope.builtin').find_files({ no_ignore = true }) end },
   },
 
   opts = { 
