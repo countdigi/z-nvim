@@ -32,29 +32,73 @@ require('lazy').setup({
   require 'plug.theme-nord',
   require 'plug.treesitter',
   require 'plug.bufferline',
-  require 'plug.hop'
+  require 'plug.hop',
+  require 'plug.nvim-lspconfig',
 })
 
 ------------------------------------------------------------------------------------------------------
 
-vim.opt.clipboard = "unnamedplus"
+vim.opt.autoindent = true -- copy indent from current line when starting new one
+vim.opt.backspace = 'indent,eol,start' -- allow backspace on
+vim.opt.backup = false
+vim.opt.breakindent = true
+vim.opt.clipboard = {'unnamedplus'}
+vim.opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
+vim.opt.completeopt = {'menuone', 'longest'}
+vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
+vim.opt.cursorline = false -- highlight the current line
+vim.opt.fileencoding = 'utf-8' -- the encoding written to a file
+vim.opt.formatoptions:remove { 'c', 'r', 'o' } 
+vim.opt.hlsearch = false -- Set highlight on search
+vim.opt.ignorecase = true
+vim.opt.iskeyword:append '-' -- hyphenated words recognized by searches
+vim.opt.linebreak = true -- companion to wrap don't split words
 vim.opt.number = true
+vim.opt.numberwidth = 3 
+vim.opt.pumheight = 10 -- pop up menu height
 vim.opt.relativenumber = true
-vim.opt.shiftwidth = 2
+vim.opt.scrolloff = 4 -- minimal number of screen lines to keep above and below the cursor
+vim.opt.shortmess:append 'c' -- don't give |ins-completion-menu| messages
+vim.opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
+vim.opt.showtabline = 2 -- always show tabs
+vim.opt.sidescrolloff = 8 -- minimal number of screen columns either side of cursor if wrap is `false`
+vim.opt.signcolumn = 'yes' 
+vim.opt.smartcase = true
+vim.opt.smartindent = true -- make indenting smarter again
+vim.opt.splitbelow = true -- force all horizontal splits to go below current window
+vim.opt.splitright = true -- force all vertical splits to go to the right of current window
+vim.opt.swapfile = false -- creates a swapfile
+vim.opt.undofile = true
+vim.opt.whichwrap = 'bs<>[]hl' -- which "horizontal" keys are allowed to travel to prev/next line
+vim.opt.wrap = true 
+vim.opt.writebackup = false -- if file edited by another 
+
+vim.opt.expandtab = true 
+vim.opt.shiftwidth = 2 
+vim.opt.softtabstop = 2 
+vim.opt.tabstop = 2 
+
+-- vim.o.whichwrap = 'bs<>[]hl' -- which "horizontal" keys are allowed to travel to prev/next line
+-- vim.o.updatetime = 250 -- Decrease update time
+-- vim.o.timeoutlen = 300 -- time to wait for a mapped sequence to complete (in milliseconds)
+-- vim.opt.runtimepath:remove '/usr/share/vim/vimfiles' -- separate vim plugins from neovim in case vim still in use
 
 ------------------------------------------------------------------------------------------------------
 
-vim.keymap.set("n", "<leader><tab>", ":bnext<enter>")
+vim.keymap.set('n', '<leader><tab>', ':bnext<enter>')
 
-vim.keymap.set("n", "<leader>h", "<C-w>h")
-vim.keymap.set("n", "<leader>j", "<C-w>j")
-vim.keymap.set("n", "<leader>k", "<C-w>k")
-vim.keymap.set("n", "<leader>l", "<C-w>l")
-vim.keymap.set("n", "<leader>o", "<C-w>o")
+vim.keymap.set('n', '<leader>h', '<C-w>h')
+vim.keymap.set('n', '<leader>j', '<C-w>j')
+vim.keymap.set('n', '<leader>k', '<C-w>k')
+vim.keymap.set('n', '<leader>l', '<C-w>l')
+vim.keymap.set('n', '<leader>o', '<C-w>o')
 
-vim.keymap.set("n", "<C-j>", "20jz.")
-vim.keymap.set("n", "<C-k>", "20kz.")
-vim.keymap.set("n", "q", "<nop>")
+vim.keymap.set('n', '<C-j>', '20jz.')
+vim.keymap.set('n', '<C-k>', '20kz.')
+vim.keymap.set('n', 'q', '<nop>')
+
+vim.keymap.set('n', '<right>', '<cmd>cnext<cr>') 
+vim.keymap.set('n', '<left>', '<cmd>cprev<cr>') 
 
 
 -- vim.keymap.set('n', 'grn', vim.lsp.buf.rename)
@@ -82,14 +126,14 @@ vim.keymap.set("n", "q", "<nop>")
 -- require 'plugins.harpoon',
 
 
--- require "u/options"
--- require "u/lazy"
--- require "u/keymaps"
--- require "u/autocommands"
+-- require 'u/options'
+-- require 'u/lazy'
+-- require 'u/keymaps'
+-- require 'u/autocommands'
 --
--- require("lualine").setup {
+-- require('lualine').setup {
 --   options = {
---     theme = "codedark",
+--     theme = 'codedark',
 --   }
 -- }
 --
@@ -100,23 +144,23 @@ vim.keymap.set("n", "q", "<nop>")
 -- ]])
 
 
--- vim.treesitter.query.set("snakemake", "injections", [[
+-- vim.treesitter.query.set('snakemake', 'injections', [[
 -- ;; extends
--- (directive @label (#any-of? @label "shell")
+-- (directive @label (#any-of? @label 'shell')
 --   )
 -- )
 -- ]])
 --
 -- ((wildcard
 --   (identifier) @label)
---   (#any-of? @label "input" "log" "output" "params" "resources" "threads" "wildcards"))
+--   (#any-of? @label 'input' 'log' 'output' 'params' 'resources' 'threads' 'wildcards'))
 --
 --       (directive ; [209, 4] - [231, 11]
 --         arguments: (directive_parameters ; [209, 10] - [231, 11]
 --           (string ; [210, 8] - [231, 11]
 
 -- (shebang_recipe
---   (shebang_body) @injection.content (#set! injection.language "bash"))
+--   (shebang_body) @injection.content (#set! injection.language 'bash'))
 
 
 -- vim.cmd([[
