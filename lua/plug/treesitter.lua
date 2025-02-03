@@ -3,7 +3,7 @@ return {
 
   build = ':TSUpdate',
 
-  opts = { 
+  opts = {
     ensure_installed = {
       'bash',
       'json',

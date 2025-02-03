@@ -11,7 +11,7 @@ vim.g.maplocalleader = ' '
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system {
     'git',
     'clone',
@@ -33,7 +33,8 @@ require('lazy').setup({
   require 'plug.treesitter',
   require 'plug.bufferline',
   require 'plug.hop',
-  require 'plug.nvim-lspconfig',
+  require 'plug.lspconfig',
+  require 'plug.nvim-cmp',
 })
 
 ------------------------------------------------------------------------------------------------------
@@ -48,13 +49,13 @@ vim.opt.completeopt = {'menuone', 'longest'}
 vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
 vim.opt.cursorline = false -- highlight the current line
 vim.opt.fileencoding = 'utf-8' -- the encoding written to a file
-vim.opt.formatoptions:remove { 'c', 'r', 'o' } 
+vim.opt.formatoptions:remove { 'c', 'r', 'o' }
 vim.opt.hlsearch = false -- Set highlight on search
 vim.opt.ignorecase = true
 vim.opt.iskeyword:append '-' -- hyphenated words recognized by searches
 vim.opt.linebreak = true -- companion to wrap don't split words
 vim.opt.number = true
-vim.opt.numberwidth = 3 
+vim.opt.numberwidth = 3
 vim.opt.pumheight = 10 -- pop up menu height
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 4 -- minimal number of screen lines to keep above and below the cursor
@@ -62,7 +63,7 @@ vim.opt.shortmess:append 'c' -- don't give |ins-completion-menu| messages
 vim.opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
 vim.opt.showtabline = 2 -- always show tabs
 vim.opt.sidescrolloff = 8 -- minimal number of screen columns either side of cursor if wrap is `false`
-vim.opt.signcolumn = 'yes' 
+vim.opt.signcolumn = 'yes'
 vim.opt.smartcase = true
 vim.opt.smartindent = true -- make indenting smarter again
 vim.opt.splitbelow = true -- force all horizontal splits to go below current window
@@ -70,13 +71,13 @@ vim.opt.splitright = true -- force all vertical splits to go to the right of cur
 vim.opt.swapfile = false -- creates a swapfile
 vim.opt.undofile = true
 vim.opt.whichwrap = 'bs<>[]hl' -- which "horizontal" keys are allowed to travel to prev/next line
-vim.opt.wrap = true 
-vim.opt.writebackup = false -- if file edited by another 
+vim.opt.wrap = true
+vim.opt.writebackup = false -- if file edited by another
 
-vim.opt.expandtab = true 
-vim.opt.shiftwidth = 2 
-vim.opt.softtabstop = 2 
-vim.opt.tabstop = 2 
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+vim.opt.tabstop = 2
 
 -- vim.o.whichwrap = 'bs<>[]hl' -- which "horizontal" keys are allowed to travel to prev/next line
 -- vim.o.updatetime = 250 -- Decrease update time
@@ -97,8 +98,8 @@ vim.keymap.set('n', '<C-j>', '20jz.')
 vim.keymap.set('n', '<C-k>', '20kz.')
 vim.keymap.set('n', 'q', '<nop>')
 
-vim.keymap.set('n', '<right>', '<cmd>cnext<cr>') 
-vim.keymap.set('n', '<left>', '<cmd>cprev<cr>') 
+vim.keymap.set('n', '<right>', '<cmd>cnext<cr>')
+vim.keymap.set('n', '<left>', '<cmd>cprev<cr>')
 
 
 -- vim.keymap.set('n', 'grn', vim.lsp.buf.rename)

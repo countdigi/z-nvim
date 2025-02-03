@@ -6,7 +6,7 @@ return {
   dependencies = {
     { "nvim-lua/plenary.nvim" },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    { "nvim-telescope/telescope-frecency.nvim" },
+    { "nvim-telescope/telescope-frecency.nvim"},
   },
 
   init = function()
@@ -16,12 +16,12 @@ return {
 
   keys = {
     { '<leader>fb', function() require('telescope.builtin').buffers() end },
-    { '<leader>fh', function() require('telescope.builtin').help_tags() end },
     { '<leader>ff', function() require('telescope.builtin').find_files() end },
     { '<leader>fg', function() require('telescope.builtin').live_grep() end },
+    { '<leader>fh', function() require('telescope.builtin').help_tags() end },
     { '<leader>fm', function() require('telescope').extensions.frecency.frecency {} end },
-    { '<leader>fs', function() require('telescope.builtin').current_buffer_fuzzy_find() end },
     { '<leader>fr', function() require('telescope.builtin').find_files({ no_ignore = true }) end },
+    { '<leader>fs', function() require('telescope.builtin').current_buffer_fuzzy_find() end },
   },
 
   opts = { 
@@ -39,8 +39,7 @@ return {
     },
 
     pickers = {
-      find_files = { previewer = false },
-      fd = { previewer = false }
+      find_files = { previewer = true },
     },
 
     extensions = {
@@ -49,6 +48,10 @@ return {
        override_generic_sorter = true,  -- override the generic sorter
        override_file_sorter = true,     -- override the file sorter
        case_mode = "smart_case",        -- or "ignore_case" or "respect_case" the default case_mode is "smart_case"
+      },
+      frecency = {
+        ignore_patterns = { '*/nvim/*' },
+        show_scores = true,
       }
     },
   },
