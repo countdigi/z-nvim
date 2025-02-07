@@ -35,6 +35,7 @@ require('lazy').setup({
   require 'plug.hop',
   require 'plug.lspconfig',
   require 'plug.nvim-cmp',
+  -- require 'plug.trouble',
 })
 
 ------------------------------------------------------------------------------------------------------
@@ -107,6 +108,26 @@ vim.keymap.set('n', '<left>', '<cmd>cprev<cr>')
 -- vim.keymap.set('n', 'grr', vim.lsp.buf.references)
 
 ------------------------------------------------------------------------------------------------------
+-- autocommands
+------------------------------------------------------------------------------------------------------
+
+local mygrp = vim.api.nvim_create_augroup('mygrp', {clear = true})
+
+vim.api.nvim_create_autocmd({'BufWritePre'}, {
+  -- remove trailing whitespace from all lines before saving a file
+  group = mygrp,
+  pattern = "*",
+  command = [[%s/\s\+$//e]],
+})
+
+vim.api.nvim_create_autocmd({'TextYankPost'}, {
+  group    = mygrp,
+  pattern  = '*',
+  callback = function() vim.highlight.on_yank{timeout=1000} end
+})
+
+
+------------------------------------------------------------------------------------------------------
 
 -- require(themes[env_var_nvim_theme]),
 -- require 'plugins.telescope',
@@ -125,67 +146,3 @@ vim.keymap.set('n', '<left>', '<cmd>cprev<cr>')
 -- require 'plugins.database',
 -- require 'plugins.misc',
 -- require 'plugins.harpoon',
-
-
--- require 'u/options'
--- require 'u/lazy'
--- require 'u/keymaps'
--- require 'u/autocommands'
---
--- require('lualine').setup {
---   options = {
---     theme = 'codedark',
---   }
--- }
---
--- vim.cmd([[
---   highlight! link @markup.raw Special
---   highlight! link @string.special Title
---   highlight! link @markup.raw.ledger Title
--- ]])
-
-
--- vim.treesitter.query.set('snakemake', 'injections', [[
--- ;; extends
--- (directive @label (#any-of? @label 'shell')
---   )
--- )
--- ]])
---
--- ((wildcard
---   (identifier) @label)
---   (#any-of? @label 'input' 'log' 'output' 'params' 'resources' 'threads' 'wildcards'))
---
---       (directive ; [209, 4] - [231, 11]
---         arguments: (directive_parameters ; [209, 10] - [231, 11]
---           (string ; [210, 8] - [231, 11]
-
--- (shebang_recipe
---   (shebang_body) @injection.content (#set! injection.language 'bash'))
-
-
--- vim.cmd([[
---   highlight clear
---   highlight Number      ctermfg=Grey  ctermbg=None
---   highlight String      ctermfg=250    ctermbg=None
---   highlight Comment     ctermfg=245   ctermbg=None
---   highlight Statement   ctermfg=28   ctermbg=None
---   highlight @variable   ctermfg=76    ctermbg=None
---   highlight Normal      ctermfg=None  ctermbg=None cterm=None gui=None
---   highlight Colorcolumn ctermfg=None  ctermbg=235   cterm=None
---   highlight Cursorline  ctermfg=None  ctermbg=235   cterm=None gui=None
---   highlight Special     ctermfg=110  ctermbg=None
---
---   highlight link StatusLine  Normal
---   highlight link StatuslineNC Normal
---   highlight link TablineFill Normal
--- ]])
-
---
---
---
-
--- vim.cmd([[
--- highlight PreProc guifg=green
--- highlight Special guifg=green
--- ]])

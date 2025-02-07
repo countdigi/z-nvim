@@ -22,9 +22,10 @@ return {
     { '<leader>fm', function() require('telescope').extensions.frecency.frecency {} end },
     { '<leader>fr', function() require('telescope.builtin').find_files({ no_ignore = true }) end },
     { '<leader>fs', function() require('telescope.builtin').current_buffer_fuzzy_find() end },
+    { '<leader>fn', function() require('telescope.builtin').find_files { cwd = vim.fn.stdpath "config" } end },
   },
 
-  opts = { 
+  opts = {
     -- The table will be passed to the Plugin.config() function
 
     defaults = {

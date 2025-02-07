@@ -16,7 +16,6 @@ return {
         ['<c-c>'] = cmp.mapping.complete {},              -- Manually trigger a completion from nvim-cmp.
         ['<tab>'] = cmp.mapping.confirm { select = true },
 
-
         -- Think of <c-l> as moving to the right of your snippet expansion.
         --  So if you have a snippet that's like:
         --  function $name($args)
