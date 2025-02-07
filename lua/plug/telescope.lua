@@ -29,12 +29,12 @@ return {
     -- The table will be passed to the Plugin.config() function
 
     defaults = {
-      layout_strategy = "vertical",
+      layout_strategy = 'horizontal',
       layout_config = { height=0.99, width=0.99 },
       mappings = {
         i = {
-          ["<C-k>"] = "move_selection_previous",
-          ["<C-j>"] = "move_selection_next",
+          ['<c-k>'] = 'move_selection_previous',
+          ['<c-j>'] = 'move_selection_next',
         }
       }
     },

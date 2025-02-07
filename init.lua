@@ -57,7 +57,7 @@ vim.opt.iskeyword:append '-' -- hyphenated words recognized by searches
 vim.opt.linebreak = true -- companion to wrap don't split words
 vim.opt.number = true
 vim.opt.numberwidth = 3
-vim.opt.pumheight = 10 -- pop up menu height
+vim.opt.pumheight = 62 -- pop up menu height
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 4 -- minimal number of screen lines to keep above and below the cursor
 vim.opt.shortmess:append 'c' -- don't give |ins-completion-menu| messages
